@@ -8,19 +8,19 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Cars
+public class Car
 {
     private @Id @GeneratedValue Long id;
     private int year;
     private String brand;
     private String model;
 
-    public Cars()
+    public Car()
     {
         // default constructor
     }
 
-    public Cars(int year, String brand, String model)
+    public Car(int year, String brand, String model)
     {
         this.year = year;
         this.brand = brand;
