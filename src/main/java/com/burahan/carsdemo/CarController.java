@@ -64,13 +64,28 @@ public class CarController
     @GetMapping("/cars/brand/{brand}")
     public List<Car> sortByBrand(@PathVariable String brand)
     {
-        
+        List<Car> carList = cRepo.findAll();
+        List<Car> returnList = new ArrayList<>();
+        for (Car c : carList)
+        {
+            if (c.getBrand().equalsIgnoreCase(brand))
+            {
+                returnList.add(c);
+            }
+        }
+        return returnList;
     }
 
     @PostMapping("/cars/upload")
     public List<Car> newCar(@RequestBody List<Car> newCarList)
     {
         return cRepo.saveAll(newCarList);
+    }
+
+    @DeleteMapping("/cars/delete/{id}")
+    public void deleteCar(@PathVariable Long id)
+    {
+        cRepo.deleteById(id);
     }
 
 
