@@ -12,6 +12,6 @@ public class CarConsumer
     @RabbitListener(queues = CarsdemoApplication.QUEUE_NAME)
     public void consumeMessage(final Message cm)
     {
-        log.info("Received Message: ", cm.toString());
+        log.info("Looked up cars: ", cm.toString());
     }
 }
