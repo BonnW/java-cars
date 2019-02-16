@@ -73,18 +73,27 @@ public class CarController
                 returnList.add(c);
             }
         }
+        CarLog message = new CarLog("Retrieved all cars made by " + brand);
+        rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
+        log.info("Your presence has been noted");
         return returnList;
     }
 
     @PostMapping("/cars/upload")
     public List<Car> newCar(@RequestBody List<Car> newCarList)
     {
+        CarLog message = new CarLog("Added Cars to Data");
+        rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
+        log.info("Your presence has been noted");
         return cRepo.saveAll(newCarList);
     }
 
     @DeleteMapping("/cars/delete/{id}")
     public void deleteCar(@PathVariable Long id)
     {
+        CarLog message = new CarLog("Deleted Car with id: " + id);
+        rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
+        log.info("Your presence has been noted");
         cRepo.deleteById(id);
     }
 
