@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -27,29 +28,26 @@ public class CarController
     @GetMapping("/cars")
     public List<Car> getAll()
     {
+        CarLog message = new CarLog("Retrieved All Cars");
+        rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
+        log.info("Your presence has been noted");
         return cRepo.findAll();
     }
 
     @GetMapping("/cars/id/{id}")
-    public Car findById(@PathVariable Long id)
+    public Optional<Car> findById(@PathVariable Long id)
     {
-        List<Car> carList = cRepo.findAll();
-        for (Car c : carList)
-        {
-            if (c.getId().equals(id))
-            {
-                CarLog message = new CarLog("Got one Car by Id. Car: " + c.getYear() + " " +c .getBrand() + " " + c.getModel());
-                rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
-                log.info("Your presence has been noted");
-                return c;
-            }
-        }
-        return null;
+        CarLog message = new CarLog("Retrieved Car with id: " + id);
+        rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
+        log.info("Your presence has been noted");
+        return cRepo.findById(id);
     }
 
     @GetMapping("/cars/year/{year}")
-    public List<Car> sortByYear(@PathVariable int year)
+    public List<Car> findByYear(@PathVariable int year)
     {
+        // return cRepo.findByYear(year);
+
         List<Car> carList = cRepo.findAll();
         List<Car> returnList = new ArrayList<>();
         for (Car c : carList)
@@ -59,6 +57,7 @@ public class CarController
                 returnList.add(c);
             }
         }
+
         CarLog message = new CarLog("Retrieved all cars made in " + year);
         rt.convertAndSend(CarsdemoApplication.QUEUE_NAME, message.toString());
         log.info("Your presence has been noted");
