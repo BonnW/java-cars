@@ -1,4 +1,4 @@
-package com.burahan.carsdemo;
+package domains.carsdemo;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

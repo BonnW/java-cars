@@ -1,4 +1,4 @@
-package com.burahan.carsdemo;
+package domains.carsdemo;
 
 import java.io.Serializable;
 import java.text.DateFormat;

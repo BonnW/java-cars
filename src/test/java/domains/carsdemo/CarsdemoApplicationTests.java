@@ -1,4 +1,4 @@
-package com.burahan.carsdemo;
+package domains.carsdemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

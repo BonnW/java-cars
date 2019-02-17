@@ -1,4 +1,4 @@
-package com.burahan.carsdemo;
+package domains.carsdemo;
 
 public class CarNotFoundException extends RuntimeException
 {

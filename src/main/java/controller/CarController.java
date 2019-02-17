@@ -1,5 +1,9 @@
-package com.burahan.carsdemo;
+package controller;
 
+import domains.carsdemo.Car;
+import domains.carsdemo.CarLog;
+import domains.carsdemo.CarRepository;
+import domains.carsdemo.CarsdemoApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;

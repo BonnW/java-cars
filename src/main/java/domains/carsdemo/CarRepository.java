@@ -1,4 +1,4 @@
-package com.burahan.carsdemo;
+package domains.carsdemo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
